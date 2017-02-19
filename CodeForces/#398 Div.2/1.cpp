@@ -1,3 +1,10 @@
+/*
+题意：
+1-n这n个数，会以乱序的输入，但是只有当最大的数输出之后，才能继续输出更小的数，不然就输出回车。比如：41523,输出/n/n5 4/n/n3 2 1
+思路：
+对题意分析化简，用模拟即可做出
+*/
+
 #include <bits/stdc++.h>
 #define FOR(i, a, b) for (int i = (a); i <= (b); i++)
 #define FORD(i, a, b) for (int i = (a); i >= (b); i--)
