@@ -1,3 +1,6 @@
+/*
+简单分析加贪心
+*/
 #include <bits/stdc++.h>
 #define FOR(i, a, b) for (int i = (a); i <= (b); i++)
 #define FORD(i, a, b) for (int i = (a); i >= (b); i--)
@@ -15,37 +18,32 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(0);
-    int n, m;
-    while(cin >> n >> m){
-        int a[MAX], b[MAX], x[MAX], y[MAX];
-        REP(i, n)   cin >> a[i];
-        REP(i, n)   cin >> b[i];
+    int n;
+    while(cin >> n){
+        string x, y;
+        cin >> x >> y;
+        int a[MAX], b[MAX];
+        REP(i, x.size())    a[i] = int(x.at(i)-'0');
+        REP(i, x.size())    b[i] = int(y.at(i)-'0');
+        sort(a, a + n);
+        sort(b, b + n);
+        int ans1=0, j=0;
         REP(i, n){
-            if(i != n-1)
-                x[i] = a[i+1] - a[i];
-            else
-                x[i] = m - a[i] + a[0];
+            while(j < n && b[j] < a[i])    j++;
+            if(j >= n)  break;
+            j++;
+            ans1++;
         }
+        ans1 = n - ans1;
+        int ans2=0; j=0;
         REP(i, n){
-            if(i != n-1)
-                y[i] = b[i+1] - b[i];
-            else
-                y[i] = m - b[i] + b[0];
+            while(j < n && b[j] <= a[i])    j++;
+            if(j >= n)  break;
+            j++;
+            ans2++;
         }
-        bool flag;
-        REP(i, n){
-            flag = true;
-            REP(j, n){
-                int z = (i + j) % n;
-                if(x[z] != y[j]){
-                    flag = false;
-                    break;
-                }
-            }
-            if(flag)    break;
-        }
-        if(flag)    cout << "YES" << endl;
-        else cout << "NO" << endl;
+        cout << ans1 << endl;
+        cout << ans2 << endl;
     }
     return 0;
 }

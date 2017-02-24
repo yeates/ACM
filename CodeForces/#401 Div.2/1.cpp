@@ -1,3 +1,6 @@
+/*
+推规律题
+*/
 #include <bits/stdc++.h>
 #define FOR(i, a, b) for (int i = (a); i <= (b); i++)
 #define FORD(i, a, b) for (int i = (a); i >= (b); i--)
@@ -18,13 +21,12 @@ int main(){
     while(cin >> n){
         int m, x;
         cin >> m;
-        int a[100] = {1, 2, 2, 1, 0, 0};
-        if(m == 0){
-            x = a[(n-1) % 6];
-        }
-        else if(m == 1){
-
-        }
+        int a[6] = {1,2,2,1,0,0};
+        int b[6] = {0,0,1,2,2,1};
+        int c[6] = {2,1,0,0,1,2};
+        if(a[(n-1)%6] == m) cout << "0" << endl;
+        else if(b[(n-1)%6] == m)    cout << "1" << endl;
+        else if(c[(n-1)%6] == m)   cout << "2" << endl;
     }
     return 0;
 }
