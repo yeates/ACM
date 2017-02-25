@@ -26,7 +26,7 @@ int main(){
     int n, m;
     while(cin >> n >> m){
         MS(dp);
-        int ans[MAX];       //ans[i]表示第i行上，能满足题意条件的最大范围是 [r - ans[i] + 1, r]
+        int ans[MAX];       //ans[i]表示第i行上，能满足题意条件的最大范围是 [r - ans[i] + 1, r]，这是一个时间优化的部分，如果直接使用dp[][]则会超时，因为测试部分：O(t * m)相当于O(n^2)
         REP(i, n){
             int tmax = -INF;
             REP(j, m){
