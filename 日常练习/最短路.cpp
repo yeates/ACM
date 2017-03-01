@@ -39,6 +39,26 @@ int dijkstra(int s, int d){
     return dis[d];
 }
 
+int spfa(int s, int d){
+    queue<int>q;
+    dis[s] = 0;
+    q.push(s);
+    vis[s] = 1;     // 这里的vis数组是用来判断当前下标是否在队列中。
+    while(!q.empty()){
+        int e = q.front();
+        q.pop();
+        vis[e] = 0;
+        for(int i = 1; i <= n; i++){
+            if(dis[e] + mpt[e][i] >= dis[i])    continue;
+            dis[i] = dis[e] + mpt[e][i];
+            if(vis[i])  continue;
+            q.push(i);
+            vis[i] = 1;
+        }
+    }
+    return dis[d];
+}
+
 int main(){
     int m;
     while(cin >> n >> m && (n !=0 || m != 0)){
@@ -49,7 +69,7 @@ int main(){
             if(mpt[x][y] > z)
                 mpt[x][y] = mpt[y][x] = z;
         }
-        cout << dijkstra(1, n) << endl;
+        cout << spfa(1, n) << endl;
     }
     return 0;
 }
