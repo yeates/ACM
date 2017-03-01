@@ -59,6 +59,16 @@ int spfa(int s, int d){
     return dis[d];
 }
 
+void floyd(){
+    for(int k = 1; k <= n; k++){
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= n; j++){
+                mpt[i][j] = Min(mpt[i][k] + mpt[k][j], mpt[i][j]);
+            }
+        }
+    }
+}
+
 int main(){
     int m;
     while(cin >> n >> m && (n !=0 || m != 0)){
@@ -69,7 +79,8 @@ int main(){
             if(mpt[x][y] > z)
                 mpt[x][y] = mpt[y][x] = z;
         }
-        cout << spfa(1, n) << endl;
+        floyd();
+        cout << mpt[1][n] << endl;
     }
     return 0;
 }
