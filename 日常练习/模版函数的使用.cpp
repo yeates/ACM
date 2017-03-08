@@ -22,11 +22,12 @@ NODE<T> operator + (const NODE<T>& A, const NODE<T>& B){        //注意每个使用到
     return NODE<T>(A.x + B.x, A.y + B.y);
 }
 
-//重载<<运算符
+//重载<<运算符,ostream是<<运算符的数据类型
 template <typename T>
 ostream& operator << (ostream& out, const NODE<T>& A){
     out << "x=" << A.x << endl;
     out << "y=" << A.y << endl;
+    return out;
 }
 
 int main(){
