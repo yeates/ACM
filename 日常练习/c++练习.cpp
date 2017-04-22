@@ -9,6 +9,9 @@ using namespace std;
 #define pb push_back
 #define MAX 105
 #define INF 0x3f3f3f3f
+#define MOD 1000000007
+#define MS(vis) memset(vis, 0, sizeof(vis));
+#define LL long long
 
 struct NODE{
     int x, y;
