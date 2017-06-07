@@ -1,11 +1,10 @@
-#include <iostream>
-#include <queue>
-#include <string.h>
 /*
 priority_queue实现的dijkstra最短路算法，时间复杂度O(mlogn)
 相比原始dijkstra的O(n^2)复杂度，该算法不仅在稀疏图的情况下大大提高效率，且在稠密图下也常常不会慢于原始算法。
 */
-
+#include <iostream>
+#include <queue>
+#include <string.h>
 using namespace std;
 #define Max a > b ? a: b
 #define Min a < b ? a: b
