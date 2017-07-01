@@ -1,22 +1,28 @@
 #include <iostream>
-#include <stdio.h>
-#include <map>
+#define LL long long
 #define Max(a, b) a > b? a: b
+#define MAX 105
 using namespace std;
 
 int main(){
-    //ios::sync_with_stdio(false);
-    int n;
-    while(cin >> n){
-        map<int, int>mp;
-        int tmax = 0;
+    int T;
+    cin >> T;
+    while(T--){
+        int n, a[MAX];
+        cin >> n;
+        int k;
         for(int i = 0; i < n; i++){
-            int x;
-            scanf("%d", &x);
-            mp[x]++;
-            tmax = Max(tmax, mp[x]);
+            cin >> a[i];
+            if(a[i] == n)   k = i;
         }
-        printf("%d\n", tmax);
+        int i = k;
+        k = n;
+        while(i >= 0){
+            if(k == a[i])   k--;
+            i--;
+        }
+        int key = n - k;
+        cout << n - key << endl;
     }
     return 0;
 }

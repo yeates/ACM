@@ -1,22 +1,21 @@
-#include <iostream>
 #include <stdio.h>
-#include <map>
-#define Max(a, b) a > b? a: b
-using namespace std;
+
+int res[25];
+void hanoi(){
+    res[0] = 0;
+    for(int i = 1; i < 25; i++){
+        res[i] += 2 + 3 * res[i-1];
+    }
+}
 
 int main(){
-    //ios::sync_with_stdio(false);
-    int n;
-    while(cin >> n){
-        map<int, int>mp;
-        int tmax = 0;
-        for(int i = 0; i < n; i++){
-            int x;
-            scanf("%d", &x);
-            mp[x]++;
-            tmax = Max(tmax, mp[x]);
-        }
-        printf("%d\n", tmax);
+    int T;
+    scanf("%d", &T);
+    hanoi();
+    while(T--){
+        int n;
+        scanf("%d", &n);
+        printf("%d\n", res[n-1] + 2);
     }
     return 0;
 }
