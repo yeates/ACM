@@ -1,0 +1,38 @@
+// ËØÊıÉ¸·¨
+include <bits/stdc++.h>
+#define Max(a, b) a > b? a: b
+#define Min(a, b) a < b? a: b
+#define FOR(i, a, b) for(int i = a; i <= b; i++)
+#define REP(i, n) FOR(i, 0, n-1)
+#define MAX 1000005
+#define pi acos(-1)
+#define LL long long
+const LL INF = 1e+18;
+const double eps = 1e-10;
+using namespace std;
+int isnprime[MAX];
+int main(){
+    vector<int>prime;
+    prime.push_back(0);
+    memset(isnprime, 0, sizeof(isnprime));
+    isnprime[0] = isnprime[1] = 1;
+    for(int i = 2; i < MAX; i++){
+        if(isnprime[i]) continue;
+        prime.push_back(i);
+        if(i > MAX / i) continue;
+        for(int j = i * i; j < MAX; j += i){
+            isnprime[j] = 1;
+        }
+    }
+    int m, n;
+    //cout << prime.size() << endl;
+    while(scanf("%d%d", &m, &n) != EOF){
+        for(int i = m; i <= n; i++){
+            if((i - m + 1) % 10 == 0 || i == n)
+                printf("%d\n", prime[i]);
+            else
+                printf("%d ", prime[i]);
+        }
+    }
+    return 0;
+}

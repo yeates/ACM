@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#define Max(a, b) a > b? a: b
+#define Min(a, b) a < b? a: b
+#define FOR(i, a, b) for(int i = a; i <= b; i++)
+#define REP(i, n) FOR(i, 0, n-1)
+#define MAX 1000005
+#define pi acos(-1)
+#define LL long long
+const LL INF = 1e+18;
+const double eps = 1e-10;
+using namespace std;
+
+int main(){
+    ios::sync_with_stdio(false);
+    char a[15], b[15];
+    int x, y;
+    while(cin >> a >> x >> b >> y){
+        int acnt, bcnt;
+        char char_a[15], char_b[15];
+        memset(char_a, 0, sizeof(char_a));
+        memset(char_b, 0, sizeof(char_b));
+        acnt = bcnt = 0;
+        for(int i = 0; i < strlen(a); i++)
+            if(a[i] == '0' + x)
+                char_a[acnt++] = x + '0';
+        for(int i = 0; i < strlen(b); i++)
+            if(b[i] == '0' + y)
+                char_b[bcnt++] = y + '0';
+
+        LL ans = atoll(char_a);
+        ans = ans + atoll(char_b);
+        cout << ans << endl;
+    }
+    return 0;
+}

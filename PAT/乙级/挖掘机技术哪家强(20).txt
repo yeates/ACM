@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define Max(a, b) a > b? a: b
+#define Min(a, b) a < b? a: b
+#define FOR(i, a, b) for(int i = a; i <= b; i++)
+#define REP(i, n) FOR(i, 0, n-1)
+#define MAX 100005
+#define pi acos(-1)
+#define LL long long
+const LL INF = 1e+18;
+const double eps = 1e-10;
+using namespace std;
+
+struct node{
+    int index;
+    int score;
+    node(){this->score = 0;}
+}a[MAX];
+
+bool operator < (const node a, const node b){
+    return a.score < b.score;
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    int n;
+    while(cin >> n){
+        memset(a, 0, sizeof(a));
+        for(int i = 0; i < n; i++){
+            int x, y;
+            cin >> x >> y;
+            a[x].score += y;
+            a[x].index = x;
+        }
+        sort(a, a + MAX);
+        cout << a[MAX-1].index << " " << a[MAX-1].score << endl;
+    }
+    return 0;
+}

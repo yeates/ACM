@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+#define Max(a, b) a > b? a: b
+#define Min(a, b) a < b? a: b
+#define FOR(i, a, b) for(int i = a; i <= b; i++)
+#define REP(i, n) FOR(i, 0, n-1)
+#define MAX 1005
+#define pi acos(-1)
+#define LL long long
+const LL INF = 1e+18;
+const double eps = 1e-10;
+using namespace std;
+
+LL gcd(LL a, LL b){
+    a = abs(a), b = abs(b);
+    if(a < b)   swap(a, b);
+    LL c;
+    while(b != 0){
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    return a;
+}
+
+struct NODE{
+    LL a;
+    LL b;
+    NODE(LL x, LL y):a(x), b(y){};
+};
+
+NODE operator + (const NODE n1, const NODE n2){
+    if(n1.a == 0 || n1.b == 0){
+        return NODE(n2.a, n2.b);
+    }
+    else if(n2.a == 0 || n2.b == 0){
+        return NODE(n1.a, n1.b);
+    }
+    LL GCD = gcd(n1.b, n2.b);
+    LL bs = n2.b / GCD;
+    LL a = n1.a * bs, b = n1.b * bs;
+    bs = n1.b / GCD;
+    a += n2.a * bs;
+    GCD = gcd(a, b);
+    a /= GCD, b /= GCD;
+    return NODE(a, b);
+}
+
+ostream& operator << (ostream& out, const NODE n){
+    char fra[80], num[80];
+    sprintf(fra, "%lld/%lld", n.a % n.b, n.b);
+    sprintf(num, "%lld", n.a / n.b);
+    if(n.a / n.b == 0){
+        if(n.a == 0)    out << 0 << endl;
+        else out << fra << endl;
+    }
+    else if(n.a < 0){
+        if(n.a % n.b == 0)
+            out << num << endl;
+        else out << num << " " << fra << endl;
+    }
+    else if(n.a > 0){
+        if(n.a % n.b == 0)
+            out << num << endl;
+        else out << num << " " << fra << endl;
+    }
+    return out;
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    int T;
+    cin >> T;
+    NODE n(0, 0);
+    while(T--){
+        string str;
+        cin >> str;
+        string part[2];
+        int len = str.size();
+        for(int i = 0; i < len; i++)
+            if(str[i] == '/'){
+                part[0] = str.substr(0, i);
+                part[1] = str.substr(i+1);
+            }
+        LL a = atoll(part[0].c_str());
+        LL b = atoll(part[1].c_str());
+        LL GCD = gcd(a, b);
+        a /= GCD, b /= GCD;
+        n = n + NODE(a, b);
+        //cout << n.a << " " << n.b << endl;
+    }
+    cout << n;
+    return 0;
+}
