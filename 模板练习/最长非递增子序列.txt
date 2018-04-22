@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define LL long long
+#define MS(a) memset(a, 0, sizeof(a))
+#define FOR(i, a, b) for(int i = a; i <= a; i++)
+#define REP(i, n)   FOR(i, 0, n-1)
+#define FORD(i, a, b) for(int i = a; i >= b; i--)
+#define PI acos(-1)
+#define pb push_back
+#define fi first
+#define se second
+#define eps 1e-10
+#define INF 0x3f3f3f3f
+using namespace std;
+const LL MOD = 1000000007;
+#define MAX 105
+
+int s[MAX], n;
+
+int LIS(){
+    int lis[MAX], pos, len;
+    pos = 0; len = 1; lis[len] = s[0];
+    REP(i, n-1){
+        pos = upper_bound(lis, lis+len, s[i]);
+        lis[pos] = s[i];
+        if(len < pos)
+            len = pos;
+    }
+}
+
+int main(){
+    while(cin >> n){
+        REP(i, n-1){
+            cin >> s[i];
+        }
+        cout << upper_bound(s, s + n, 3) << endl;
+    }
+    return 0;
+}

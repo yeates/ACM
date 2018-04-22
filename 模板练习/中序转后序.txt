@@ -1,0 +1,45 @@
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<string>
+#include<iomanip>
+#include<queue>
+#include<math.h>
+#define MAX 1005
+using namespace std;
+
+struct node{
+    char str;
+    struct node* lchild;
+    struct node* rchild;
+};
+
+struct node* createTree(char *in, char *pos, int len){
+    if(len <= 0) return NULL;
+    char center = pos[len-1];
+    struct node* root = (struct node*)malloc(sizeof(node));
+    root->str = center;
+    int i;
+    for(i = 0; i < len; i++){
+        if(in[i] == center) break;
+    }
+    root->lchild = createTree(in, pos, i);
+    root->rchild = createTree(in+i+1, pos+i, len-i-1);
+    return root;
+};
+
+void preDisp(struct node* bt){
+    cout << bt->str;
+    if(bt->lchild!=NULL)    preDisp(bt->lchild);
+    if(bt->rchild!=NULL)    preDisp(bt->rchild);
+}
+
+int main(){
+    char pos[MAX], in[MAX];
+    cin >> in >> pos;
+    int len = strlen(in);
+    struct node* root = createTree(in, pos, len);
+    preDisp(root);
+    cout << endl;
+}

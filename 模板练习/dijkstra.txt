@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+#define LL long long
+#define MS(a) memset(a, 0, sizeof(a))
+#define FOR(i, a, b) for(int i = 0; i <= a; i <= b)
+#define REP(i, n)   FOR(i, 0, n-1)
+#define FORD(i, a, b) for(int i = a; i >= b; i--)
+#define PI acos(-1)
+#define pb push_back
+#define fi first
+#define se second
+#define eps 1e-10
+#define INF 0x3f3f3f3f
+using namespace std;
+const LL MOD = 1000000007;
+#define MAX 105
+
+int mpt[MAX][MAX];
+int dis[MAX], vis[MAX];
+int n;
+int dijkstra(int s, int d){
+    for(int i = 1; i <= n; i++){
+        dis[i] = INF;
+        vis[i] = 0;
+    }
+    dis[0] = INF;
+    dis[s] = 0;
+    REP(j, n){
+        int t = 0;
+        for(int i = 1; i <= n; i++){
+            if(vis[i])  continue;
+            t = dis[t] > dis[i]? i: t;
+        }
+        if(dis[t] == INF)   break;
+        vis[t] = 1;
+        for(int i = 1; i <= n; i++){
+            if(vis[i] || mpt[t][i] == INF)  continue;
+            dis[i] = min(dis[t] + mpt[t][i], dis[i]);
+        }
+    }
+    return dis[d];
+}
+
+int main(){
+
+    return 0;
+}

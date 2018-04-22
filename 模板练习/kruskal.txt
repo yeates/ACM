@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define LL long long
+#define MS(a) memset(a, 0, sizeof(a))
+#define FOR(i, a, b) for(int i = 0; i <= a; i <= b)
+#define REP(i, n)   FOR(i, 0, n-1)
+#define FORD(i, a, b) for(int i = a; i >= b; i--)
+#define PI acos(-1)
+#define pb push_back
+#define fi first
+#define se second
+#define eps 1e-10
+#define INF 0x3f3f3f3f
+using namespace std;
+const LL MOD = 1000000007;
+#define MAX 105
+
+# MAX 为 n*(n-1)/2
+# n为点数，m为边数
+int u[MAX], v[MAX], w[MAX];
+int edge[MAX];
+int f[MAX], n, m;
+
+bool cmp(int i, int j){
+    return w[i] < w[j];
+}
+int Find(int x){
+    return f[x] == x? x: Find(f[x]);
+}
+int kruskal(){
+    int ans = 0;
+    REP(i, n-1) f[i] = i;
+    REP(i, m-1) edge[i] = i;
+    sort(edge, edge+m, cmp);
+    for(int i = 0; i < m; i++){
+        int e = edge[i];
+        int x = Find(u[e]), y = Find(v[e]);
+        if(x != y){
+            ans += w[e];
+            f[x] = y;
+        }
+    }
+    return ans;
+}
+    
+int main(){
+
+    return 0;
+}
